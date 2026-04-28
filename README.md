@@ -31,26 +31,21 @@ Todo dia em um horário fixo o agente:
 ## 📧 Exemplo de email recebido
 
 ```
-💭 Reflexão do dia — 27/04/2026
+💭 Reflexão do dia — 28/04/2026
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 💬 FRASE DO DIA
-"O amor não correspondido é o mais puro de todos,
-pois nele não há expectativa de retorno."
+"É possível amar verdadeiramente sem antes amar a si mesmo?"
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 📖 CONTEXTO
-Filósofos como Platão já discutiam o amor não correspondido
-no Banquete. Para ele, o amor é a busca pela metade perdida —
-e quando essa busca não encontra resposta, revela o quanto
-estamos dispostos a sentir sem garantias...
+A filosofia muitas vezes debate a relação entre o amor próprio e o amor pelos outros. Ao contrário da visão egoísta, o amor próprio saudável não implica narcisismo, mas sim reconhecer e aceitar as próprias falhas, permitindo assim a reciprocidade genuína no amor por outro. Somente ao aceitar seu próprio ser, alguém pode oferecer um amor pleno e não condicionado.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 ❓ PERGUNTA PARA REFLETIR
-Você já deixou a timidez falar mais alto que o sentimento?
-O que ficou dessa escolha?
+Como você poderia cultivar o amor por si mesmo e como isso influenciaria a forma como você ama os outros?
 ```
 
 ---
