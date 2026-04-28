@@ -4,9 +4,9 @@ steps:
     args:
       - "build"
       - "-t"
-      - "southamerica-east1-docker.pkg.dev/$PROJECT_ID/philosopher-agent/philosopher-agent:$COMMIT_SHA"
+      - "southamerica-east1-docker.pkg.dev/$PROJECT_ID/philosophizing/philosophizing:$COMMIT_SHA"
       - "-t"
-      - "southamerica-east1-docker.pkg.dev/$PROJECT_ID/philosopher-agent/philosopher-agent:latest"
+      - "southamerica-east1-docker.pkg.dev/$PROJECT_ID/philosophizing/philosophizing:latest"
       - "."
 
   # Push para o Artifact Registry
@@ -14,7 +14,7 @@ steps:
     args:
       - "push"
       - "--all-tags"
-      - "southamerica-east1-docker.pkg.dev/$PROJECT_ID/philosopher-agent/philosopher-agent"
+      - "southamerica-east1-docker.pkg.dev/$PROJECT_ID/philosophizing/philosophizing"
 
   # Deploy no Cloud Run (privado — acionado via Cloud Scheduler com OIDC)
   - name: "gcr.io/google.com/cloudsdktool/cloud-sdk"
@@ -22,15 +22,15 @@ steps:
     args:
       - "run"
       - "deploy"
-      - "philosopher-agent"
-      - "--image=southamerica-east1-docker.pkg.dev/$PROJECT_ID/philosopher-agent/philosopher-agent:$COMMIT_SHA"
+      - "philosophizing"
+      - "--image=southamerica-east1-docker.pkg.dev/$PROJECT_ID/philosophizing/philosophizing:$COMMIT_SHA"
       - "--region=southamerica-east1"
       - "--platform=managed"
       - "--no-allow-unauthenticated"
       - "--set-secrets=OPENAI_API_KEY=OPENAI_API_KEY:latest,GMAIL_USER=GMAIL_USER:latest,GMAIL_APP_PASSWORD=GMAIL_APP_PASSWORD:latest,TO_EMAIL=TO_EMAIL:latest"
 
 images:
-  - "southamerica-east1-docker.pkg.dev/$PROJECT_ID/philosopher-agent/philosopher-agent"
+  - "southamerica-east1-docker.pkg.dev/$PROJECT_ID/philosophizing/philosophizing"
 
 options:
   logging: CLOUD_LOGGING_ONLY
