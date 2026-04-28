@@ -13,9 +13,13 @@ logger = get_logger(__name__)
 def _init_firebase():
     if not firebase_admin._apps:
         cred_path = os.getenv("GOOGLE_APPLICATION_CREDENTIALS", "service-account.json")
-        logger.info(f"Inicializando Firebase com credencial: {cred_path}")
-        cred = credentials.Certificate(cred_path)
-        firebase_admin.initialize_app(cred)
+        if os.path.exists(cred_path):
+            logger.info(f"Inicializando Firebase com credencial: {cred_path}")
+            cred = credentials.Certificate(cred_path)
+            firebase_admin.initialize_app(cred)
+        else:
+            logger.info("Inicializando Firebase com Application Default Credentials")
+            firebase_admin.initialize_app()
         logger.info("Firebase inicializado com sucesso")
     return firestore.client(database_id='philosopher-agent')
 
