@@ -1,0 +1,36 @@
+steps:
+  # Build da imagem Docker
+  - name: "gcr.io/cloud-builders/docker"
+    args:
+      - "build"
+      - "-t"
+      - "southamerica-east1-docker.pkg.dev/$PROJECT_ID/philosopher-agent/philosopher-agent:$COMMIT_SHA"
+      - "-t"
+      - "southamerica-east1-docker.pkg.dev/$PROJECT_ID/philosopher-agent/philosopher-agent:latest"
+      - "."
+
+  # Push para o Artifact Registry
+  - name: "gcr.io/cloud-builders/docker"
+    args:
+      - "push"
+      - "--all-tags"
+      - "southamerica-east1-docker.pkg.dev/$PROJECT_ID/philosopher-agent/philosopher-agent"
+
+  # Deploy no Cloud Run (privado — acionado via Cloud Scheduler com OIDC)
+  - name: "gcr.io/google.com/cloudsdktool/cloud-sdk"
+    entrypoint: "gcloud"
+    args:
+      - "run"
+      - "deploy"
+      - "philosopher-agent"
+      - "--image=southamerica-east1-docker.pkg.dev/$PROJECT_ID/philosopher-agent/philosopher-agent:$COMMIT_SHA"
+      - "--region=southamerica-east1"
+      - "--platform=managed"
+      - "--no-allow-unauthenticated"
+      - "--set-secrets=OPENAI_API_KEY=OPENAI_API_KEY:latest,GMAIL_USER=GMAIL_USER:latest,GMAIL_APP_PASSWORD=GMAIL_APP_PASSWORD:latest,TO_EMAIL=TO_EMAIL:latest"
+
+images:
+  - "southamerica-east1-docker.pkg.dev/$PROJECT_ID/philosopher-agent/philosopher-agent"
+
+options:
+  logging: CLOUD_LOGGING_ONLY
