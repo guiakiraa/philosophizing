@@ -1,3 +1,4 @@
 dotenv==0.9.9
 firebase-admin==7.4.0
 openai==2.31.0
+functions-framework==3.10.1
