@@ -52,7 +52,7 @@ def _build_html(content: dict) -> str:
         <hr style="border: none; border-top: 1px solid #ddd; margin: 20px 0;">
 
         <p style="text-align: center; font-size: 12px; color: #aaa;">
-          Philosopher Agent · Reflexão diária automática
+          Aporia · uma pergunta nova todo dia
         </p>
 
       </body>

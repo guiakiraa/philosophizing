@@ -21,7 +21,7 @@ def _init_firebase():
             logger.info("Inicializando Firebase com Application Default Credentials")
             firebase_admin.initialize_app()
         logger.info("Firebase inicializado com sucesso")
-    return firestore.client(database_id='philosopher-agent')
+    return firestore.client(database_id='aporia')
 
 
 def get_sent_themes() -> list[str]:

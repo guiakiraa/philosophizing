@@ -1,7 +1,10 @@
-# 🧠 Philosophizing
+# 🧠 Aporia
 
 > Agente autônomo que gera reflexões filosóficas diárias e envia por email — 
-rodando 100% na nuvem, sem precisar de máquina ligada.
+
+*Aporia* é o impasse socrático: o momento, no fim do diálogo, em que não sobra
+uma resposta definitiva — só uma pergunta melhor. É exatamente como cada email
+deste agente termina.
 
 ![Python](https://img.shields.io/badge/Python-3.11+-blue?style=flat&logo=python)
 ![OpenAI](https://img.shields.io/badge/OpenAI-GPT--4o-black?style=flat&logo=openai)
@@ -94,7 +97,7 @@ CI/CD (push → main)
 ## 📁 Estrutura do projeto
 
 ```
-philosopher-agent/
+aporia/
 │
 ├── src/
 │   ├── agent/
@@ -126,8 +129,8 @@ philosopher-agent/
 
 ### 1. Clone o repositório
 ```bash
-git clone https://github.com/guiakiraa/philosophizing.git
-cd philosophizing
+git clone https://github.com/guiakiraa/aporia.git
+cd aporia
 ```
 
 ### 2. Crie o ambiente virtual
@@ -158,6 +161,13 @@ GOOGLE_APPLICATION_CREDENTIALS=service-account.json
 ### 5. Configure o Firebase
 - Crie um projeto no [GCP Console](https://console.cloud.google.com)
 - Ative o Firestore em **Native Mode**
+- Crie o database chamado `aporia`:
+  ```bash
+  gcloud firestore databases create \
+    --database=aporia \
+    --location=southamerica-east1 \
+    --type=firestore-native
+  ```
 - Crie uma Service Account, adicione a role `Cloud Datastore User` e baixe o `service-account.json`
 - Coloque o arquivo na raiz do projeto
 
@@ -178,7 +188,7 @@ O deploy é feito automaticamente via **Cloud Build** a cada push na branch `mai
 
 **1. Criar o repositório no Artifact Registry**
 ```bash
-gcloud artifacts repositories create philosopher-agent \
+gcloud artifacts repositories create aporia \
   --repository-format=docker \
   --location=southamerica-east1
 ```
@@ -207,10 +217,10 @@ Conecte o repositório no [Cloud Build Console](https://console.cloud.google.com
 
 **5. Criar o job no Cloud Scheduler**
 ```bash
-gcloud scheduler jobs create http philosopher-agent-daily \
+gcloud scheduler jobs create http aporia-daily \
   --location=southamerica-east1 \
   --schedule="0 8 * * *" \
-  --uri="https://philosopher-agent-xxxx-uc.a.run.app" \
+  --uri="https://aporia-xxxx-uc.a.run.app" \
   --http-method=GET \
   --oidc-service-account-email=scheduler-sa@$PROJECT_ID.iam.gserviceaccount.com \
   --time-zone="America/Sao_Paulo"
@@ -218,7 +228,7 @@ gcloud scheduler jobs create http philosopher-agent-daily \
 
 ### Disparar manualmente
 ```bash
-gcloud scheduler jobs run philosopher-agent-daily --location=southamerica-east1
+gcloud scheduler jobs run aporia-daily --location=southamerica-east1
 ```
 
 ---
@@ -226,7 +236,7 @@ gcloud scheduler jobs run philosopher-agent-daily --location=southamerica-east1
 ## 💡 Temas abordados pelo agente
 
 - Filosofia clássica e moderna
-- Amor, paixão, timidez e relacionamentos
+- Amor, paixão e relacionamentos
 - Existencialismo e propósito de vida
 - Dilemas morais e éticos
 - Psicologia humana e comportamento

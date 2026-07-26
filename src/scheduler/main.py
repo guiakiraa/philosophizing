@@ -8,7 +8,7 @@ logger = get_logger(__name__)
 
 @functions_framework.http
 def run(request):
-    logger.info("========== Philosopher Agent iniciado ==========")
+    logger.info("========== Aporia iniciado ==========")
 
     try:
         logger.info("Gerando reflexão...")
@@ -17,7 +17,7 @@ def run(request):
         logger.info("Enviando email...")
         send_email(content)
 
-        logger.info("========== Philosopher Agent finalizado com sucesso ==========")
+        logger.info("========== Aporia finalizado com sucesso ==========")
         return {"status": "success", "theme": content["theme"]}, 200
 
     except Exception as e:
